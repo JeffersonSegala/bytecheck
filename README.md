@@ -1,0 +1,2 @@
+# bytecheck
+Encontrar caracteres especiais
