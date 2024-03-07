@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colar Texto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cole seu texto aqui</h1>
+    <textarea id="texto" placeholder="Cole seu texto aqui..."></textarea>
+    <button onclick="exibirTexto()">Destacar caracteres especiais</button>
+    <div id="textoExibido"></div>
+
+    <script>
+        function exibirTexto() {
+            var texto = document.getElementById('texto').value;
+            texto = realcarCaracteresEspeciais(texto);
+            document.getElementById('textoExibido').innerHTML = texto;
+        }
+
+        function realcarCaracteresEspeciais(texto) {
+            var textoRealcado = '';
+            for (var i = 0; i < texto.length; i++) {
+                if (getTextoByteLength(texto.charAt(i)) > 2) {
+                    textoRealcado += '<span class="highlight">' + texto.charAt(i) + '</span>';
+                } else {
+                    textoRealcado += texto.charAt(i);
+                }
+            }
+            return textoRealcado;
+        }
+
+        function getTextoByteLength(text) {
+            var blob = new Blob([text]);
+            return blob.size;
+        }
+    </script>
+</body>
+</html>
